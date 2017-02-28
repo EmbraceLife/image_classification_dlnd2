@@ -1,5 +1,5 @@
 # Plain outline of this notebook
-## **preprocessing data**
+## **funcs to preprocess data**
 Build the following functions to do the tasks described for each function: 
 - **download** and **unzip** tar.gz
 - **extract features and labels** from 1 out of 5 training batches
@@ -9,7 +9,7 @@ Build the following functions to do the tasks described for each function:
 - **randomize data** (done by cifar-10 maker)
 - **save preprocessed data into a pickle file**, and load this pickle file directly for convenience of training
 
-## **building models**
+## **funcs to build input tensors and layers**
 Build functions to create tensors for each input and each layer
 - **func to build input tensor**: build a feature tensor, a label tensor, a dropout tensor waiting to be fed
 - **func to build a conv layer tensor**
@@ -31,9 +31,8 @@ Build functions to create tensors for each input and each layer
     - layer_fc= tf.add(tf.matmul(x_tensor, weights), biases)
 - **func to build output_layer**: similar to fc_layer
 
-## **Build CNN model function**
+## **func to add layers into a CNN model**
 > Create a function to run all tensor functions above with parameters inputs to build a specific model (forward pass)
-
 - **set parameters**: 
     - conv_out_channels = 20,
     - conv_filter_shape = (5,5) or [5, 5, 3, 20]
@@ -47,22 +46,25 @@ Build functions to create tensors for each input and each layer
 - add output layer
 - return tensor
 
-**Build Neural Net**
+## **Build A Forward Pass**
+> run all funcs created above to build a network from input tensors to layers, then to accuracy tensor
 - reset all variables of default graph
-- create tensors for features, labels and dropout
-- run the CNN model function, return logits tensor
-- name logits for loading from disk
-- build cost tensor using softmax + cross_entropy + take_average on logits and true labels
-- build optimizer tensor with AdamOpt and cost
+- run funcs to create tensors for features, labels and dropout
+- run CNN model function to get logits tensor through a forward pass
+- name logits for loading from disk later
+- build a cost tensor using softmax + cross_entropy + take_average on logits and true labels
+- build a optimizer tensor with AdamOpt and cost
 - build a tensor for correct_pred
 - build a tensor for accuracy
 
-**Build a NN training function**
+## more functions 
+**Build Backward Pass/Optimization function**
 - do a session run
 - feed features, labels, keep_prob data
 - run optimizer tensor 
 
-**print stats function**
+** print stats function**
+> this func help to print loss and accuracy after each epoch and the last iteration
 - do a session run
 - feed data like above, except keep_prob = 1
 - run cost tensor compute to get loss
@@ -70,36 +72,36 @@ Build functions to create tensors for each input and each layer
 - run accuracy tensor to compute valid_acc on validation set
 - print loss and valid_acc
 
+## Training and optimizing or forward-backward pass looping
 **Set hyperparameter**
 - epochs
 - batch_size
 - keep_prob
 
-**run a single large batch to get loss and valid_acc**
+**run a single large batch to update weights and print loss and valid_acc**
 - open a session
 - initialize all variables of default graph
 - for each epoch, and for each small batch of the large batch
-- train network to optimize or update weights
+- training or optimizing: forward pass = get loss, backward pass = update weights
 - at end of each epoch, print loss and valid_acc on validation set
 
-**run all 5 large batches to get loss and valid_acc**
+**run all 5 large batches to update weights and print loss and valid_acc**
 - open a session
 - initialize all variables of default graph
 - for each epoch, 
 - and for each small batch of every large batches (5)
-- train network to optimize or update weights
+- training or optimizing: forward pass = get loss, backward pass = update weights
 - at end of each large batch, print loss and valid_acc on validation set
 - save the model or the session into a file
 
 **Test Model**
 - make sure batch_size is set as previous or 64
 - set model_file path
-- build a test model function: 
 - load test set (test_features, test_labels) from pickle fine
 - assign a name to default graph
 - open a session with graph name
 - import the saved model and restore all variables of the model onto the current default graph
-- get all variables of saved model by name and assign them a new variable name
+- get all variables of saved model by name and assign them new names
 - get test_features and test_labels into many small batches
 - compute accuracy tensor with each small batch
 - add up each small batch's accuracy and count up num of accuracies
