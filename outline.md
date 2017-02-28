@@ -50,7 +50,7 @@ Create a function to run all tensor functions above with parameters inputs to bu
 - return tensor
 
 ## **Build A Forward Pass**
-run all funcs created above to build a network from input tensors to layers, then to accuracy tensor
+run all funcs created above to build a network from input tensors to end of layers (logits), finally to loss, accuracy tensors
 - reset all variables of default graph
 - run funcs to create tensors for features, labels and dropout
 - run CNN model function to get logits tensor through a forward pass
