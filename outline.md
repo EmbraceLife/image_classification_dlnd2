@@ -1,14 +1,14 @@
-#### Plain outline of this notebook
-**preprocessing data**
-- download and unzip tar.gz
-- extract features and labels from 1 out of 5 training batches
-- display stats of this batch and print out an image
-- normalize features down to range 0 to 1
-- one-hot-encode labels
-- randomize data (done by cifar-10 maker)
-- save preprocessed data into a pickle file, and load this pickle file directly for convenience of training
+# Plain outline of this notebook
+## **preprocessing data**
+- **download** and **unzip** tar.gz
+- **extract features and labels** from 1 out of 5 training batches
+- **display stats** of this batch and **print out an image**
+- **normalize features** down to range 0 to 1
+- **one-hot-encode** labels
+- **randomize data** (done by cifar-10 maker)
+- **save preprocessed data into a pickle file**, and load this pickle file directly for convenience of training
 
-**building models**
+## **building models**
 - build a feature tensor, a label tensor, a dropout tensor waiting to be fed
 - build a conv layer 
     - filter_weight = [width, height, in_channels, out_channels)
