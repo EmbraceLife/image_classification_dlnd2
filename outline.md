@@ -35,7 +35,7 @@ Build functions to create tensors for each input and each layer
 - **func to build output_layer**: similar to fc_layer
 
 ## **func to add layers into a CNN model**
-> Create a function to run all tensor functions above with parameters inputs to build a specific model (forward pass)
+Create a function to run all tensor functions above with parameters inputs to build a specific model (forward pass)
 - **set parameters**: 
     - conv_out_channels = 20,
     - conv_filter_shape = (5,5) or [5, 5, 3, 20]
@@ -50,7 +50,7 @@ Build functions to create tensors for each input and each layer
 - return tensor
 
 ## **Build A Forward Pass**
-> run all funcs created above to build a network from input tensors to layers, then to accuracy tensor
+run all funcs created above to build a network from input tensors to layers, then to accuracy tensor
 - reset all variables of default graph
 - run funcs to create tensors for features, labels and dropout
 - run CNN model function to get logits tensor through a forward pass
