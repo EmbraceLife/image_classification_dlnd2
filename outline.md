@@ -7,7 +7,10 @@ Build the following functions to do the tasks described for each function:
 - **normalize features** down to range 0 to 1
 - **one-hot-encode** labels
 - **randomize data** (done by cifar-10 maker)
-- **save preprocessed data into a pickle file**, and load this pickle file directly for convenience of training
+- **transform and save in pickle**
+    - helper.preprocess_and_save_data(cifar10_dataset_folder_path, normalize, one_hot_encode)
+    - apply normalization, one-hot-encode to entire dataset
+    - save them in pickle file
 
 ## **funcs to build input tensors and layers**
 Build functions to create tensors for each input and each layer
