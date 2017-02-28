@@ -1,5 +1,6 @@
 # Plain outline of this notebook
 ## **preprocessing data**
+Build the following functions to do the tasks described for each function: 
 - **download** and **unzip** tar.gz
 - **extract features and labels** from 1 out of 5 training batches
 - **display stats** of this batch and **print out an image**
@@ -9,28 +10,31 @@
 - **save preprocessed data into a pickle file**, and load this pickle file directly for convenience of training
 
 ## **building models**
-- build a feature tensor, a label tensor, a dropout tensor waiting to be fed
-- build a conv layer 
+Build functions to create tensors for each input and each layer
+- **func to build input tensor**: build a feature tensor, a label tensor, a dropout tensor waiting to be fed
+- **func to build a conv layer tensor**
     - filter_weight = [width, height, in_channels, out_channels)
     - strides = [1, width, height, 1]
     - with `tf.nn.conv2d(input_tensor, filter_weights, filter_strides, padding)`
     - add bias to conv layer with `tf.nn.bias_add`
     - apply non-linear activation to conv layer with `tf.nn.relu`
-- build max-pool layer: 
+- **func to build max-pool layer tensor** 
     - pool filter_size = [1, width, height, 1]
     - pool strides = [1, width, height, 1]
     - pool layer by `tf.nn.max_pool(input_tensor, filter, strides, padding)`
-- build a flatten layer
+- **func to build a flatten layer tensor**
     - get input layer's shape: `t.get_shape()`
     - calc num of elements from shape: `tensorShape.num_elements()`
     - flatten_layer = tf.reshape(x_tensor, [-1, num_features])
-- build a fc_layer
+- **func to build a fc_layer tensor**
     - get weights and bias shape right
     - layer_fc= tf.add(tf.matmul(x_tensor, weights), biases)
-- build output_layer: similar to fc_layer
+- **func to build output_layer**: similar to fc_layer
 
-**Build CNN model function**
-- set parameters: 
+## **Build CNN model function**
+> Create a function to run all tensor functions above with parameters inputs to build a specific model (forward pass)
+
+- **set parameters**: 
     - conv_out_channels = 20,
     - conv_filter_shape = (5,5) or [5, 5, 3, 20]
     - conv_strides_shape = (2,2) or [1, 2,2, 1]
