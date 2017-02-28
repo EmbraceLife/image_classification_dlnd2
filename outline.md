@@ -67,7 +67,7 @@ run all funcs created above to build a network from input tensors to layers, the
 - run optimizer tensor 
 
 ** print stats function**
-> this func help to print loss and accuracy after each epoch and the last iteration
+this func help to print loss and accuracy after each epoch and the last iteration
 - do a session run
 - feed data like above, except keep_prob = 1
 - run cost tensor compute to get loss
@@ -95,21 +95,22 @@ run all funcs created above to build a network from input tensors to layers, the
 - and for each small batch of every large batches (5)
 - training or optimizing: forward pass = get loss, backward pass = update weights
 - at end of each large batch, print loss and valid_acc on validation set
-- save the model or the session into a file
+- **save the model** or the session into a file
 
-**Test Model**
+## **Test Model**
 - make sure batch_size is set as previous or 64
 - set model_file path
 - load test set (test_features, test_labels) from pickle fine
 - assign a name to default graph
 - open a session with graph name
-- import the saved model and restore all variables of the model onto the current default graph
+- **import the saved model and restore** all variables of the model onto the current default graph
 - get all variables of saved model by name and assign them new names
 - get test_features and test_labels into many small batches
 - compute accuracy tensor with each small batch
 - add up each small batch's accuracy and count up num of accuracies
 - print and compute the final accuracy
-- print out 4 random sample images
-    - randomly sample 4 images
-    - compute a tensor to get top 3 predictions of an image
-    - print out images and predictions
+
+**print out 4 random sample images**
+- randomly sample 4 images
+- compute a tensor to get top 3 predictions of an image
+- print out images and predictions
